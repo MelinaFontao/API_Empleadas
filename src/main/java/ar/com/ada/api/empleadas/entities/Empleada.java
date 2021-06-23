@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table (name = "Empleada")
+@Table (name = "empleada")
 public class Empleada {
 
     @Id
@@ -24,7 +24,7 @@ public class Empleada {
     @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
     private BigDecimal sueldo;
-    private int estado;
+    private int estado_Id;
 
     @Column(name = "fecha_Alta")
     private Date fechaAlta;
@@ -89,11 +89,11 @@ public class Empleada {
 
     public EstadoEmpleadaEnum getEstado() {
 
-        return EstadoEmpleadaEnum.parse(this.estado);
+        return EstadoEmpleadaEnum.parse(this.estado_Id);
     }
 
     public void setEstadoId(EstadoEmpleadaEnum estado) {
-        this.estado = estado.getValue();
+        this.estado_Id = estado.getValue();
     }
 
 

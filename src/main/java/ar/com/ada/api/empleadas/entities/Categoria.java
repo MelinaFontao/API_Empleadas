@@ -15,12 +15,12 @@ public class Categoria {
     //Genera el autoincremental en el MySQL
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 
-    @Column (name = "Categoria_id")
+    @Column (name = "categoria_Id")
     private Integer categoria_Id;
 
     private String nombre;
 
-    @Column (name = "sueldo_ Base")
+    @Column (name = "sueldo_Base")
     private BigDecimal sueldo_Base;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
