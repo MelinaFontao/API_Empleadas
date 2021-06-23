@@ -3,15 +3,33 @@ package ar.com.ada.api.empleadas.entities;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table (name = "Empleada")
 public class Empleada {
 
+    @Id
+    //Genera el autoincremental en el MySQL
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
+    @Column (name = "empleada_Id")
     private Integer empleada_Id;
+
     private String nombre;
     private Integer edad;
+
+    @ManyToOne //join columns van donde esta FK
+    @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
     private BigDecimal sueldo;
     private int estado;
+
+    @Column(name = "fecha_Alta")
     private Date fechaAlta;
+
+    @Column(name = "fecha_Baja")
     private Date fechaBaja;
 
     

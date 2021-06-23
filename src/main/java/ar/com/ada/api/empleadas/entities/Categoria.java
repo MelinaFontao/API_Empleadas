@@ -1,14 +1,30 @@
 package ar.com.ada.api.empleadas.entities;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table (name = "categoria")
 public class Categoria {
 
+    @Id
+    //Genera el autoincremental en el MySQL
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
+    @Column (name = "Categoria_id")
     private Integer categoria_Id;
 
     private String nombre;
 
+    @Column (name = "sueldo_ Base")
     private BigDecimal sueldo_Base;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Empleada> empleadas = new ArrayList<>();
 
     public Integer getCategoria_Id() {
         return categoria_Id;
