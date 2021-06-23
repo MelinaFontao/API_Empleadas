@@ -26,6 +26,14 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleada> empleadas = new ArrayList<>();
 
+    public List<Empleada> getEmpleadas() {
+        return empleadas;
+    }
+
+    public void setEmpleadas(List<Empleada> empleadas) {
+        this.empleadas = empleadas;
+    }
+
     public Integer getCategoria_Id() {
         return categoria_Id;
     }
@@ -48,6 +56,10 @@ public class Categoria {
 
     public void setSueldo_Base(BigDecimal sueldo_Base) {
         this.sueldo_Base = sueldo_Base;
+    }
+
+    public void agregarEmpleada (Empleada empleada){
+        this.empleadas.add(empleada);
     }
 
     
