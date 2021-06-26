@@ -24,7 +24,9 @@ public class Empleada {
     @JoinColumn(name = "categoria_id", referencedColumnName = "categoria_id")
     private Categoria categoria;
     private BigDecimal sueldo;
-    private int estado_Id;
+
+    @Column (name = "estado_Id")
+    private int estado;
 
     @Column(name = "fecha_Alta")
     private Date fechaAlta;
@@ -89,11 +91,11 @@ public class Empleada {
 
     public EstadoEmpleadaEnum getEstado() {
 
-        return EstadoEmpleadaEnum.parse(this.estado_Id);
+        return EstadoEmpleadaEnum.parse(this.estado);
     }
 
     public void setEstadoId(EstadoEmpleadaEnum estado) {
-        this.estado_Id = estado.getValue();
+        this.estado = estado.getValue();
     }
 
 
@@ -121,7 +123,7 @@ public class Empleada {
     //enumerado
     public enum EstadoEmpleadaEnum {
         ACTIVO(1), 
-        INACTIVO(2); 
+        BAJA(2); 
         
 
         private final int value;
