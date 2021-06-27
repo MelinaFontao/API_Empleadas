@@ -1,6 +1,7 @@
 package ar.com.ada.api.empleadas.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,17 @@ public class CategoriaService {
         return repo.findAll();
     }
 
+    public Categoria buscarCategoria(Integer categoria_Id){
 
+        Optional<Categoria> resultado = repo.findById(categoria_Id);
+        Categoria categoria = null;
+    
+        if (resultado.isPresent()){
+    
+            categoria = resultado.get();
+        }
+        return categoria;
+    
+    }
+    
 }

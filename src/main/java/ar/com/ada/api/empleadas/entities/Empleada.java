@@ -1,7 +1,7 @@
 package ar.com.ada.api.empleadas.entities;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -94,7 +94,7 @@ public class Empleada {
         return EstadoEmpleadaEnum.parse(this.estado);
     }
 
-    public void setEstadoId(EstadoEmpleadaEnum estado) {
+    public void setEstado(EstadoEmpleadaEnum estado) {
         this.estado = estado.getValue();
     }
 
