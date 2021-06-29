@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +58,25 @@ public class EmpleadaController {
 		respuesta.id = empleada.getEmpleada_Id();
 		respuesta.message = "La empleada fue creada con exito";
 		return ResponseEntity.ok(respuesta);
+    }
+
+    @GetMapping("/empleados/{id}")
+    public ResponseEntity<Empleada> getEmpleadaPorId(@PathVariable Integer id){
+        Empleada empleada = service.buscarEmpleada(id);
+    
+        return ResponseEntity.ok(empleada);
+    }
+    
+    @DeleteMapping("/empleados/{id}")
+    public ResponseEntity<GenericResponse> bajaEmpleada(@PathVariable Integer id){
+		
+		service.bajaEmpleadaPorId(id);
+		GenericResponse respuesta = new GenericResponse();
+		respuesta.isOk = true;
+		respuesta.id = id;
+		respuesta.message = "La empleada fue dada de baja con exito.";
+		return ResponseEntity.ok(respuesta);
+
     }
 
 }

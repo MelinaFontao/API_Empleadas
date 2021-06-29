@@ -1,11 +1,14 @@
 package ar.com.ada.api.empleadas.services;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.empleadas.entities.Empleada;
+import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
 import ar.com.ada.api.empleadas.repos.EmpleadaRepository;
 
 @Service
@@ -23,5 +26,27 @@ public class EmpleadaService {
 
         return repo.findAll();
     }
+    
+    public Empleada buscarEmpleada(Integer empleada_Id) {
+
+        Optional<Empleada> resultado = repo.findById(empleada_Id);
+    
+        if (resultado.isPresent()){
+            return resultado.get();
+        }
+        return null; 
+    }
+
+    //DELETE LOGICO, se mantiene en la base de datos pero con estatus   
+    public void bajaEmpleadaPorId(Integer id){
+
+		Empleada empleada = this.buscarEmpleada(id);
+		
+		empleada.setEstado(EstadoEmpleadaEnum.BAJA);
+		empleada.setFechaBaja(new Date());
+
+		repo.save(empleada);
+    }
+
     
 }
