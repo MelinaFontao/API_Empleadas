@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.ada.api.empleadas.entities.Categoria;
 import ar.com.ada.api.empleadas.entities.Empleada;
 import ar.com.ada.api.empleadas.entities.Empleada.EstadoEmpleadaEnum;
 import ar.com.ada.api.empleadas.repos.EmpleadaRepository;
@@ -16,6 +17,10 @@ public class EmpleadaService {
     
     @Autowired
     EmpleadaRepository repo;
+
+    @Autowired
+	CategoriaService categoriaService;
+
 
     public void crearEmpleada(Empleada empleada){
 	
@@ -48,5 +53,16 @@ public class EmpleadaService {
 		repo.save(empleada);
     }
 
-    
+    public List <Empleada> traerEmpleadaPorCategoria(Integer catId){
+
+		Categoria categoria = categoriaService.buscarCategoria(catId);
+
+		return categoria.getEmpleadas();
+    }
+
+    public void guardar(Empleada empleada) {
+
+		repo.save(empleada);
+    }
+
 }
